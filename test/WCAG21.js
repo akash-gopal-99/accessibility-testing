@@ -7,7 +7,8 @@ fixture `WCAG2.1 Accessibility Compliance Test`;
 const webpages = [
     'https://www.skysports.com',
     'https://www.skysports.com/cricket/manchester-originals-vs-london-spirit/stats/36489',
-    'https://www.skysports.com/the-hundred'
+    'https://www.skysports.com/the-hundred',
+    'https://www.skysports.com/the-hundred/teams'
 ];
 
 for(let i = 0; i < webpages.length; i++) {
