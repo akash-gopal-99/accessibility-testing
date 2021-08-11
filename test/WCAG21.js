@@ -5,10 +5,15 @@ import{urlToFilename} from '../src/util/urlToFilename';
 fixture `WCAG2.1 Accessibility Compliance Test`;
 
 const webpages = [
-    'https://www.w3.org/WAI/standards-guidelines/wcag/',
-    'https://www.skysports.com',
-    'https://www.skysports.com/cricket/manchester-originals-vs-london-spirit/stats/36489',
+    'https://www.skysports.com/fanfare',
+    'https://www.skysports.com/matchhero',
     'https://www.skysports.com/the-hundred',
+    'https://www.skysports.com/the-hundred/news',
+    'https://www.skysports.com/the-hundred/video',
+    'https://www.skysports.com/the-hundred/live',
+    'https://www.skysports.com/the-hundred/fixtures',
+    'https://www.skysports.com/the-hundred/results',
+    'https://www.skysports.com/the-hundred/standings',
     'https://www.skysports.com/the-hundred/teams'
 ];
 
