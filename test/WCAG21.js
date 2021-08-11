@@ -1,12 +1,14 @@
-import {runAxe} from "@testcafe-community/axe";
-import {createHtmlReport} from "axe-html-reporter";
+import {runAxe} from '@testcafe-community/axe';
+import {createHtmlReport} from 'axe-html-reporter';
+import{urlToFilename} from '../src/util/urlToFilename';
 
-fixture `Accessibility Tests`;
+fixture `WCAG2.1 Accessibility Compliance Test`;
 
 const webpages = [
     'https://www.skysports.com',
     'https://www.skysports.com/cricket/manchester-originals-vs-london-spirit/stats/36489',
-    'https://www.skysports.com/the-hundred'
+    'https://www.skysports.com/the-hundred',
+    'https://www.skysports.com/the-hundred/teams'
 ];
 
 for(let i = 0; i < webpages.length; i++) {
@@ -19,7 +21,6 @@ for(let i = 0; i < webpages.length; i++) {
         const axeOptions = {
             tags: {
                 'wcag21a': { enabled: true },
-                'wcag21aa': { enabled: true },
             },
         };
 
@@ -32,19 +33,4 @@ for(let i = 0; i < webpages.length; i++) {
             },
         });
     });
-}
-
-function urlToFilename(url) {
-    let domain = (new URL(url));
-    let hostname = domain.hostname;
-    let pathname = domain.pathname;
-
-    let filename = hostname.replace('www.','').replace('.com', '').replace('.co.uk', '').replace('.de', '');
-
-    // if there is a path
-    if(pathname !== '/') {
-        filename += pathname.split('/').join('-');
-    }
-
-    return filename;
 }

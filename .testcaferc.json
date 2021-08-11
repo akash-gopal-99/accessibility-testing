@@ -1,4 +1,5 @@
 {
   "clientScripts": [{ "module": "axe-core/axe.min.js" }],
-  "browsers": "chrome:headless"
+  "browsers": "chrome:headless",
+  "skipJsErrors": "true"
 }
