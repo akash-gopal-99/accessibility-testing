@@ -1,7 +1,7 @@
 import {runAxe} from "@testcafe-community/axe";
 import {createHtmlReport} from "axe-html-reporter";
 
-fixture `TestCafe Tests with Axe`;
+fixture `Accessibility Tests`;
 
 const webpages = [
     'https://www.skysports.com',
@@ -28,7 +28,6 @@ for(let i = 0; i < webpages.length; i++) {
         createHtmlReport({
             results,
             options: {
-                projectKey: 'EXAMPLE',
                 reportFileName: filename + '.html',
             },
         });
