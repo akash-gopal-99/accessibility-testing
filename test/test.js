@@ -5,6 +5,7 @@ fixture `TestCafe Tests with Axe`;
 
 const webpages = [
     'https://www.skysports.com',
+    'https://www.skysports.com/cricket/manchester-originals-vs-london-spirit/stats/36489',
     'https://www.skysports.com/the-hundred'
 ];
 
@@ -14,18 +15,15 @@ for(let i = 0; i < webpages.length; i++) {
     let filename = urlToFilename(webpage);
 
     test.page(webpage)(`Test for ${webpage}`, async t => {
-        const axeContext = { exclude: [['select']] };
+        const axeContext = { include: [['body']] };
         const axeOptions = {
             tags: {
                 'wcag21a': { enabled: true },
                 'wcag21aa': { enabled: true },
-                // 'role-img-alt': { enabled: true },
-                // 'input-image-alt': { enabled: true },
-                // 'image-alt': { enabled: true },
             },
         };
+
         const { error, results } = await runAxe(axeContext, axeOptions);
-        console.log(error);
         // creates html report with the default file name `accessibilityReport.html`
         createHtmlReport({
             results,
@@ -46,7 +44,7 @@ function urlToFilename(url) {
 
     // if there is a path
     if(pathname !== '/') {
-        filename += pathname.replace('/', '-');
+        filename += pathname.split('/').join('-');
     }
 
     return filename;
