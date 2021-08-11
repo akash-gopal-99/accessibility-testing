@@ -1,25 +1,53 @@
-import { runAxe } from '@testcafe-community/axe';
-import { createHtmlReport } from 'axe-html-reporter';
+import {runAxe} from "@testcafe-community/axe";
+import {createHtmlReport} from "axe-html-reporter";
 
-fixture('TestCafe tests with Axe').page('https://www.skysports.com/the-hundred');
+fixture `TestCafe Tests with Axe`;
 
-test('Automated accessibility testing', async (t) => {
-    const axeContext = { exclude: [['select']] };
-    const axeOptions = {
-        rules: {
-            'object-alt': { enabled: true },
-            'role-img-alt': { enabled: true },
-            'input-image-alt': { enabled: true },
-            'image-alt': { enabled: true },
-        },
-    };
-    const { error, results } = await runAxe(axeContext, axeOptions);
-    // await t.expect(error).notOk(`axe check failed with an error: ${error.message}`);
-    // creates html report with the default file name `accessibilityReport.html`
-    createHtmlReport({
-        results,
-        options: {
-            projectKey: 'EXAMPLE',
-        },
+const webpages = [
+    'https://www.skysports.com',
+    'https://www.skysports.com/the-hundred'
+];
+
+for(let i = 0; i < webpages.length; i++) {
+    const webpage = webpages[i];
+
+    let filename = urlToFilename(webpage);
+
+    test.page(webpage)(`Test for ${webpage}`, async t => {
+        const axeContext = { exclude: [['select']] };
+        const axeOptions = {
+            tags: {
+                'wcag21a': { enabled: true },
+                'wcag21aa': { enabled: true },
+                // 'role-img-alt': { enabled: true },
+                // 'input-image-alt': { enabled: true },
+                // 'image-alt': { enabled: true },
+            },
+        };
+        const { error, results } = await runAxe(axeContext, axeOptions);
+        console.log(error);
+        // creates html report with the default file name `accessibilityReport.html`
+        createHtmlReport({
+            results,
+            options: {
+                projectKey: 'EXAMPLE',
+                reportFileName: filename + '.html',
+            },
+        });
     });
-});
+}
+
+function urlToFilename(url) {
+    let domain = (new URL(url));
+    let hostname = domain.hostname;
+    let pathname = domain.pathname;
+
+    let filename = hostname.replace('www.','').replace('.com', '').replace('.co.uk', '').replace('.de', '');
+
+    // if there is a path
+    if(pathname !== '/') {
+        filename += pathname.replace('/', '-');
+    }
+
+    return filename;
+}
