@@ -110,7 +110,9 @@ build/
 .idea
 
 # test output
-artifacts/
+artifacts/*
+# exception to the rule
+!artifacts/.gitkeep
 
 package-lock.json
 node_modules
