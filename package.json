@@ -1,0 +1,47 @@
+{
+  "name": "axe-html-reporter",
+  "version": "2.2.2",
+  "description": "The module that allows you to create HTML Report from raw accessibility aXe result object",
+  "main": "index.js",
+  "types": "dist/index.d.ts",
+  "engines": {
+    "node": ">=8.9.0"
+  },
+  "files": [
+    "dist",
+    "src",
+    "test",
+    "types"
+  ],
+  "scripts": {
+    "prebuild": "rimraf dist build",
+    "copy": "cp -R ./src/util/template ./dist/util/template",
+    "build": "tsc --project tsconfig.build.json && npm run copy",
+    "test": "jest test",
+    "test:watch": "jest test --watch"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "http://registry.npmjs.org"
+  },
+  "peerDependencies": {
+    "axe-core": ">=3"
+  },
+  "devDependencies": {
+    "@testcafe-community/axe": "^3.5.0",
+    "@types/jest": "^25.2.3",
+    "@types/mustache": "^4.0.1",
+    "@types/node": "^14.11.8",
+    "axe-core": "^4.3.2",
+    "axe-html-reporter": "^2.2.2",
+    "jest": "^26.5.3",
+    "prettier": "^2.1.2",
+    "testcafe": "^1.15.1",
+    "ts-jest": "^26.4.1",
+    "typescript": "^4.0.3"
+  },
+  "dependencies": {
+    "mustache": "^4.0.1",
+    "rimraf": "^3.0.2"
+  }
+}
