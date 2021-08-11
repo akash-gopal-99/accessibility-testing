@@ -5,6 +5,7 @@ import{urlToFilename} from '../src/util/urlToFilename';
 fixture `WCAG2.1 Accessibility Compliance Test`;
 
 const webpages = [
+    'https://www.w3.org/WAI/standards-guidelines/wcag/',
     'https://www.skysports.com',
     'https://www.skysports.com/cricket/manchester-originals-vs-london-spirit/stats/36489',
     'https://www.skysports.com/the-hundred',
@@ -19,8 +20,9 @@ for(let i = 0; i < webpages.length; i++) {
     test.page(webpage)(`Test for ${webpage}`, async t => {
         const axeContext = { include: [['body']] };
         const axeOptions = {
-            tags: {
-                'wcag21a': { enabled: true },
+            runOnly: {
+                type: 'tag',
+                values: ['wcag2a','wcag2aa']
             },
         };
 
