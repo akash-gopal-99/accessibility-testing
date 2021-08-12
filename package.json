@@ -1,7 +1,7 @@
 {
-  "name": "axe-html-reporter",
-  "version": "2.2.2",
-  "description": "The module that allows you to create HTML Report from raw accessibility aXe result object",
+  "name": "automated-accessibility-testing",
+  "version": "1.0.0",
+  "description": "Tests webpages against WCAG 2.1 A and WCAG 2.1 AA standards for accessibility.",
   "main": "index.js",
   "types": "dist/index.d.ts",
   "engines": {
